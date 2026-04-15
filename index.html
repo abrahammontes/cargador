@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,58 +40,35 @@
             background: rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            padding: 1.5rem 2rem;
+            padding: 0.5rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            transition: transform 0.3s ease;
         }
 
-        .logo img {
-            height: 95px;
+        header .logo {
+            margin-bottom: 0.5rem;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        .nav-links a:hover::after {
+        header .brands-carousel {
             width: 100%;
+            max-width: none;
         }
+
+        header .logo img {
+            height: 100px;
+        }
+
+        footer .logo img {
+            height: 100px;
+        }
+
+        /* nav-links removed */
 
         .hero {
             position: relative;
@@ -99,7 +77,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 280px 2rem 4rem;
+            padding: 160px 2rem 4rem;
         }
 
         .video-background {
@@ -160,7 +138,7 @@
             display: block;
         }
 
-        .hero-text > p {
+        .hero-text>p {
             font-size: clamp(1.2rem, 3vw, 2rem);
             margin-bottom: 1.5rem;
             color: #ffffff;
@@ -187,7 +165,7 @@
             display: block;
         }
 
-        .hero-text > p {
+        .hero-text>p {
             font-size: 2rem;
             margin-bottom: 1.5rem;
             color: #ffffff;
@@ -498,7 +476,6 @@
         .specs-container {
             max-width: 900px;
             margin: 0 auto;
-            overflow-x: auto;
         }
 
         .specs-table {
@@ -556,6 +533,42 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .specs-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .specs-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .specs-item dt {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .specs-item dd {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0;
         }
 
         .specs-table th,
@@ -648,29 +661,46 @@
         .brands-carousel {
             width: 100%;
             overflow: hidden;
-            padding: 1.5rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .brands-carousel-wrapper {
+            display: flex;
+            width: max-content;
+            animation: scroll-brands 20s linear infinite;
         }
 
         .brands-carousel-track {
             display: flex;
             gap: 4rem;
             align-items: center;
-            animation: scroll-brands 25s linear infinite;
+            flex-shrink: 0;
         }
 
-        .brands-carousel-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll-brands {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .brands-carousel-track {
+            flex-shrink: 0;
         }
 
         .brands-carousel-track img {
             height: 60px;
             width: auto;
             flex-shrink: 0;
+        }
+
+        
+
+        .brands-carousel-track:nth-child(2),
+        .brands-carousel-track:nth-child(3) {
+            margin-left: 4rem;
+        }
+
+        @keyframes scroll-brands {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-33.33%);
+            }
         }
 
         .compatibility-card {
@@ -715,16 +745,45 @@
             font-family: Arial, sans-serif;
         }
 
-        .brand-icon.nissan { color: #C3002F; }
-        .brand-icon.chevrolet { color: #0075C9; }
-        .brand-icon.bmw { color: #0066B1; }
-        .brand-icon.ford { color: #003478; }
-        .brand-icon.mazda { color: #C8102E; }
-        .brand-icon.kia { color: #05142D; }
-        .brand-icon.hyundai { color: #002A5C; }
-        .brand-icon.mini { color: #000000; }
-        .brand-icon.volkswagen { color: #1C4EE6; }
-        .brand-icon.fiat { color: #941420; }
+        .brand-icon.nissan {
+            color: #C3002F;
+        }
+
+        .brand-icon.chevrolet {
+            color: #0075C9;
+        }
+
+        .brand-icon.bmw {
+            color: #0066B1;
+        }
+
+        .brand-icon.ford {
+            color: #003478;
+        }
+
+        .brand-icon.mazda {
+            color: #C8102E;
+        }
+
+        .brand-icon.kia {
+            color: #05142D;
+        }
+
+        .brand-icon.hyundai {
+            color: #002A5C;
+        }
+
+        .brand-icon.mini {
+            color: #000000;
+        }
+
+        .brand-icon.volkswagen {
+            color: #1C4EE6;
+        }
+
+        .brand-icon.fiat {
+            color: #941420;
+        }
 
         .compatibility-card p {
             color: #ffffff;
@@ -771,7 +830,7 @@
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease;
         }
 
@@ -925,7 +984,7 @@
                 gap: 2rem;
             }
 
-            .hero-text > p {
+            .hero-text>p {
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -943,6 +1002,14 @@
                 grid-template-rows: repeat(3, 150px);
             }
 
+            .logo img {
+                height: 50px;
+            }
+
+            header {
+                padding: 0.5rem 1rem;
+            }
+
             .carousel img:first-child {
                 grid-column: span 2;
                 grid-row: span 1;
@@ -956,8 +1023,33 @@
         }
 
         @media (max-width: 640px) {
-            .nav-links {
-                display: none;
+            header {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                padding: 100px 1rem 2rem;
+            }
+
+            .brands-carousel {
+                display: block;
+                padding: 1rem 0;
+            }
+
+            .brands-carousel-track img {
+                height: 35px;
+            }
+
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo img {
+                height: 60px;
             }
 
             .hero {
@@ -994,12 +1086,16 @@
         }
 
         @media (max-width: 640px) {
-            .nav-links {
-                display: none;
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            .logo img {
+                height: 50px;
             }
 
             .hero {
-                padding: 280px 1rem 2rem;
+                padding: 100px 1rem 2rem;
             }
 
             .hero-content {
@@ -1036,6 +1132,49 @@
             .feature-icon svg {
                 width: 20px;
                 height: 20px;
+            }
+
+            .specs-table {
+                display: block;
+            }
+
+            .specs-table thead {
+                display: none;
+            }
+
+            .specs-table tbody,
+            .specs-table tr {
+                display: block;
+            }
+
+            .specs-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .specs-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(26, 26, 26, 0.8);
+                border-radius: 12px;
+                padding: 1rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .specs-item dt {
+                font-weight: 600;
+                color: var(--primary);
+                text-transform: uppercase;
+                font-size: 0.75rem;
+            }
+
+            .specs-item dd {
+                color: var(--white);
+                font-weight: 600;
+                text-align: right;
+                margin: 0;
             }
 
             .footer-content {
@@ -1084,90 +1223,99 @@
             }
         }
 
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
 
-            .btn-group {
-                flex-direction: column;
-                align-items: stretch;
-            }
+        .btn-group {
+            flex-direction: column;
+            align-items: stretch;
+        }
 
-            .btn {
-                justify-content: center;
-            }
+        .btn {
+            justify-content: center;
+        }
 
-            .carousel {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, 120px);
-            }
+        .carousel {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(4, 120px);
+        }
 
-            .carousel img:first-child {
-                grid-column: span 2;
-            }
+        .carousel img:first-child {
+            grid-column: span 2;
+        }
 
-            .price-includes {
-                padding: 1.5rem;
-            }
+        .price-includes {
+            padding: 1.5rem;
+        }
 
-            .price-includes p {
-                font-size: 1.4rem;
-            }
+        .price-includes p {
+            font-size: 1.4rem;
+        }
 
-            .price-includes li {
-                font-size: 1.2rem;
-            }
+        .price-includes li {
+            font-size: 1.2rem;
+        }
 
-            .compatibility-note p {
-                font-size: 1.1rem;
-            }
+        .compatibility-note p {
+            font-size: 1.1rem;
         }
     </style>
 </head>
+
 <body>
     <header>
-        <nav>
-            <div class="logo"><img src="media/logo.png" alt="Schumacher Electric"></div>
-            <div class="nav-links">
-                <a href="#caracteristicas">Características</a>
-                <a href="#compatibilidad">Compatibilidad</a>
-                <a href="#beneficios">Beneficios</a>
-                <a href="#comprar">Comprar</a>
-            </div>
-        </nav>
+        <div class="logo"><img src="media/logo_white.png" alt="Schumacher Electric"></div>
         <div class="brands-carousel">
-            <div class="brands-carousel-track">
-            <img src="media/Nissan_logo.png" alt="Nissan">
-            <img src="media/Chevrolet_logo.png" alt="Chevrolet">
-            <img src="media/BMW_logo.png" alt="BMW">
-            <img src="media/Ford_logo.png" alt="Ford">
-            <img src="media/MAZDA_logo.png" alt="Mazda">
-            <img src="media/KIA_logo.png" alt="Kia">
-            <img src="media/HYUNDAI_logo.png" alt="Hyundai">
-            <img src="media/VW_logo.png" alt="Volkswagen">
-            <img src="media/FIAT_logo.png" alt="Fiat">
-            <img src="media/BYD_logo.png" alt="BYD">
-            <img src="media/JAC_logo.png" alt="JAC">
-            <img src="media/Nissan_logo.png" alt="Nissan">
-            <img src="media/Chevrolet_logo.png" alt="Chevrolet">
-            <img src="media/BMW_logo.png" alt="BMW">
-            <img src="media/Ford_logo.png" alt="Ford">
-            <img src="media/MAZDA_logo.png" alt="Mazda">
-            <img src="media/KIA_logo.png" alt="Kia">
-            <img src="media/HYUNDAI_logo.png" alt="Hyundai">
-            <img src="media/VW_logo.png" alt="Volkswagen">
-            <img src="media/FIAT_logo.png" alt="Fiat">
-            <img src="media/BYD_logo.png" alt="BYD">
-            <img src="media/JAC_logo.png" alt="JAC">
+            <div class="brands-carousel-wrapper">
+                <div class="brands-carousel-track">
+                    <img src="media/Nissan_logo.png" alt="Nissan">
+                    <img src="media/Chevrolet_logo.png" alt="Chevrolet">
+                    <img src="media/BMW_logo.png" alt="BMW">
+                    <img src="media/Ford_logo.png" alt="Ford">
+                    <img src="media/MAZDA_logo.png" alt="Mazda">
+                    <img src="media/KIA_logo.png" alt="Kia">
+                    <img src="media/HYUNDAI_logo.png" alt="Hyundai">
+                    <img src="media/VW_logo.png" alt="Volkswagen">
+                    <img src="media/FIAT_logo.png" alt="Fiat">
+                    <img src="media/BYD_logo.png" alt="BYD">
+                    <img src="media/JAC_logo.png" alt="JAC">
+                </div>
+                <div class="brands-carousel-track">
+                    <img src="media/Nissan_logo.png" alt="Nissan">
+                    <img src="media/Chevrolet_logo.png" alt="Chevrolet">
+                    <img src="media/BMW_logo.png" alt="BMW">
+                    <img src="media/Ford_logo.png" alt="Ford">
+                    <img src="media/MAZDA_logo.png" alt="Mazda">
+                    <img src="media/KIA_logo.png" alt="Kia">
+                    <img src="media/HYUNDAI_logo.png" alt="Hyundai">
+                    <img src="media/VW_logo.png" alt="Volkswagen">
+                    <img src="media/FIAT_logo.png" alt="Fiat">
+                    <img src="media/BYD_logo.png" alt="BYD">
+                    <img src="media/JAC_logo.png" alt="JAC">
+                </div>
+                <div class="brands-carousel-track">
+                    <img src="media/Nissan_logo.png" alt="Nissan">
+                    <img src="media/Chevrolet_logo.png" alt="Chevrolet">
+                    <img src="media/BMW_logo.png" alt="BMW">
+                    <img src="media/Ford_logo.png" alt="Ford">
+                    <img src="media/MAZDA_logo.png" alt="Mazda">
+                    <img src="media/KIA_logo.png" alt="Kia">
+                    <img src="media/HYUNDAI_logo.png" alt="Hyundai">
+                    <img src="media/VW_logo.png" alt="Volkswagen">
+                    <img src="media/FIAT_logo.png" alt="Fiat">
+                    <img src="media/BYD_logo.png" alt="BYD">
+                    <img src="media/JAC_logo.png" alt="JAC">
+                </div>
+            </div>
         </div>
     </header>
 
     <div class="video-background">
-        <iframe 
+        <iframe
             src="https://www.youtube.com/embed/UwaMgxxkIhI?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playlist=UwaMgxxkIhI&playsinline=1"
-            frameborder="0"
-            allow="autoplay; fullscreen">
+            frameborder="0" allow="autoplay; fullscreen">
         </iframe>
     </div>
     <div class="video-overlay"></div>
@@ -1175,10 +1323,11 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Cargador <span>Inteligente</span> para Vehículos Eléctricos</h1>
+                <h1>Cargador <span>Inteligente</span> para<span style="display:block">Vehículos Híbridos y Eléctricos</span></h1>
                 <p>Carga tu vehículo eléctrico con tecnología Nivel 1 y Nivel 2.</p>
                 <p style="font-size: 1.5rem; margin-top: 1rem;">Versátil, confiable y diseñado pensando en ti.</p>
-                <div class="price-tag" style="justify-content: center;"><strong style="color: #ff4444; font-size: 3.5rem;">$9,000.00 MXN</strong></div>
+                <div class="price-tag" style="justify-content: center;"><strong
+                        style="color: #ff4444; font-size: 3.5rem;">$9,000.00 MXN</strong></div>
                 <div class="price-includes">
                     <p><strong>Incluye:</strong></p>
                     <ul>
@@ -1199,7 +1348,11 @@
                     <p>Adaptador GB/T</p>
                 </div>
             </div>
+        </div>
     </section>
+
+    </div>
+    </header>
 
     <section class="section" id="caracteristicas">
         <div class="section-title">
@@ -1211,7 +1364,10 @@
                 <div class="feature-card-inner">
                     <div class="feature-card-front">
                         <div class="feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z" />
+                            </svg>
                         </div>
                         <h3>Carga Nivel 1 y 2</h3>
                     </div>
@@ -1225,12 +1381,16 @@
                 <div class="feature-card-inner">
                     <div class="feature-card-front">
                         <div class="feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+                            </svg>
                         </div>
                         <h3>Universal J1772</h3>
                     </div>
                     <div class="feature-card-back">
-                        <p>Conector universal compatible con cualquier vehículo eléctrico con conector estándar J1772 en Norteamérica.</p>
+                        <p>Conector universal compatible con cualquier vehículo eléctrico con conector estándar J1772 en
+                            Norteamérica.</p>
                         <span class="flip-hint">↑ Voltear</span>
                     </div>
                 </div>
@@ -1239,12 +1399,16 @@
                 <div class="feature-card-inner">
                     <div class="feature-card-front">
                         <div class="feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M21.67 18.17l-5.3-5.3h-.99l-2.54 2.54v.99l5.3 5.3c.39.39 1.02.39 1.41 0l2.12-2.12c.39-.39.39-1.02 0-1.41zm-6.67-5.3l-.85.85H13v-1.99h1.86l-.85-.85l.71-.71L18.18 8.3l-3.18 3.18-1.41-1.41zM3.41 9.59l1.42 1.42L9 6.83V13H6.83l-3.42 3.42-1.42-1.42C1.21 14.21 1 13.11 1 12c0-5.52 4.48-10 10-10 5.52 0 10 4.48 10 10 0 1.11-.21 2.21-.59 3.21l-1.42-1.42c.24-.68.41-1.4.41-2.79 0-4.42-3.58-8-8-8-4.42 0-8 3.58-8 8 0 1.39.17 2.11.41 2.79z"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.67 18.17l-5.3-5.3h-.99l-2.54 2.54v.99l5.3 5.3c.39.39 1.02.39 1.41 0l2.12-2.12c.39-.39.39-1.02 0-1.41zm-6.67-5.3l-.85.85H13v-1.99h1.86l-.85-.85l.71-.71L18.18 8.3l-3.18 3.18-1.41-1.41zM3.41 9.59l1.42 1.42L9 6.83V13H6.83l-3.42 3.42-1.42-1.42C1.21 14.21 1 13.11 1 12c0-5.52 4.48-10 10-10 5.52 0 10 4.48 10 10 0 1.11-.21 2.21-.59 3.21l-1.42-1.42c.24-.68.41-1.4.41-2.79 0-4.42-3.58-8-8-8-4.42 0-8 3.58-8 8 0 1.39.17 2.11.41 2.79z" />
+                            </svg>
                         </div>
                         <h3>Cable de 8.5m</h3>
                     </div>
                     <div class="feature-card-back">
-                        <p>Cable extralargo de 28 pies que te da flexibilidad para cargar donde necesites sin complicaciones.</p>
+                        <p>Cable extralargo de 28 pies que te da flexibilidad para cargar donde necesites sin
+                            complicaciones.</p>
                         <span class="flip-hint">↑ Voltear</span>
                     </div>
                 </div>
@@ -1253,12 +1417,16 @@
                 <div class="feature-card-inner">
                     <div class="feature-card-front">
                         <div class="feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM13 18h-2v-2h2v2zm0-4h-2V9h2v5z"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM13 18h-2v-2h2v2zm0-4h-2V9h2v5z" />
+                            </svg>
                         </div>
                         <h3>Doble Compatibilidad</h3>
                     </div>
                     <div class="feature-card-back">
-                        <p>Incluye adaptador para carga Level 1 a 120V. Carga tanto en tomadas domésticas como industriales.</p>
+                        <p>Incluye adaptador para carga Level 1 a 120V. Carga tanto en tomadas domésticas como
+                            industriales.</p>
                         <span class="flip-hint">↑ Voltear</span>
                     </div>
                 </div>
@@ -1267,12 +1435,16 @@
                 <div class="feature-card-inner">
                     <div class="feature-card-front">
                         <div class="feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" />
+                            </svg>
                         </div>
                         <h3>Indicadores LED</h3>
                     </div>
                     <div class="feature-card-back">
-                        <p>Estado de carga visible incluso de noche. Sabrás siempre cuándo tu vehículo está completamente cargado.</p>
+                        <p>Estado de carga visible incluso de noche. Sabrás siempre cuándo tu vehículo está
+                            completamente cargado.</p>
                         <span class="flip-hint">↑ Voltear</span>
                     </div>
                 </div>
@@ -1281,7 +1453,10 @@
                 <div class="feature-card-inner">
                     <div class="feature-card-front">
                         <div class="feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+                            </svg>
                         </div>
                         <h3>Protección Total</h3>
                     </div>
@@ -1300,34 +1475,60 @@
             <p>Detalles completos del producto</p>
         </div>
         <div class="specs-container">
-            <table class="specs-table">
-                <thead>
-                    <tr>
-                        <th>Especificación</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Modelo</td><td>SC1455</td></tr>
-                    <tr><td>Voltaje de Entrada</td><td>110-240V</td></tr>
-                    <tr><td>Corriente de Entrada</td><td>16A</td></tr>
-                    <tr><td>Voltaje de Salida</td><td>110-240V</td></tr>
-                    <tr><td>Corriente de Salida</td><td>16A</td></tr>
-                    <tr><td>Peso</td><td>3.4 kg (7.6 lb)</td></tr>
-                    <tr><td>Dimensiones</td><td>33 x 40.6 x 5.7 cm</td></tr>
-                    <tr><td>Longitud del Cable</td><td>8.5 metros (28 pies)</td></tr>
-                    <tr><td>Tipo de Conector</td><td>J1772 Universal</td></tr>
-                    <tr><td>Garantía</td><td>1 año</td></tr>
-                </tbody>
-            </table>
+            <dl class="specs-list">
+                <div class="specs-item">
+                    <dt>Modelo</dt>
+                    <dd>SC1455</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Voltaje de Entrada</dt>
+                    <dd>110-240V</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Corriente de Entrada</dt>
+                    <dd>16A</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Voltaje de Salida</dt>
+                    <dd>110-240V</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Corriente de Salida</dt>
+                    <dd>16A</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Peso</dt>
+                    <dd>3.4 kg (7.6 lb)</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Dimensiones</dt>
+                    <dd>33 x 40.6 x 5.7 cm</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Longitud del Cable</dt>
+                    <dd>8.5 metros (28 pies)</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Tipo de Conector</dt>
+                    <dd>J1772 Universal</dd>
+                </div>
+                <div class="specs-item">
+                    <dt>Garantía</dt>
+                    <dd>1 año</dd>
+                </div>
+            </dl>
         </div>
     </section>
 
     <section class="section cta-section" id="comprar">
         <h2>¿Interesado en el SC1455?</h2>
         <p>Contáctanos directamente por WhatsApp y te ayudamos con tu compra.</p>
-        <a href="https://wa.me/523339663911?text=%C2%A1Hola%2C%20me%20interesa%20el%20cargador%20SC1455%21" class="btn-whatsapp" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <a href="https://wa.me/523339663911?text=%C2%A1Hola%2C%20me%20interesa%20el%20cargador%20SC1455%21"
+            class="btn-whatsapp" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
             Comprar por WhatsApp
         </a>
     </section>
@@ -1335,7 +1536,8 @@
     <footer>
         <div class="footer-content" style="justify-content: center; text-align: center;">
             <div class="footer-brand">
-                <div class="logo" style="justify-content: center;"><img src="media/logo.png" alt="Schumacher Electric"></div>
+                <div class="logo" style="justify-content: center;"><img src="media/logo_white.png" alt="Schumacher Electric">
+                </div>
                 <p>Líder mundial en soluciones de energía desde 1947. Calidad, innovación y confianza.</p>
             </div>
         </div>
@@ -1348,6 +1550,35 @@
     </footer>
 
     <script>
+        const header = document.querySelector('header');
+        let hideTimeout;
+        let lastScrollY = window.scrollY;
+
+        function hideHeader() {
+            header.style.transform = 'translateY(-100%)';
+            header.style.transition = 'transform 0.3s ease';
+        }
+
+        function showHeader() {
+            header.style.transform = 'translateY(0)';
+        }
+
+        function handleScroll() {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY) {
+                clearTimeout(hideTimeout);
+                showHeader();
+                hideTimeout = setTimeout(hideHeader, 2000);
+            } else {
+                clearTimeout(hideTimeout);
+                showHeader();
+            }
+            lastScrollY = currentScrollY;
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        hideTimeout = setTimeout(hideHeader, 2000);
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1385,4 +1616,5 @@
         }
     </script>
 </body>
+
 </html>
